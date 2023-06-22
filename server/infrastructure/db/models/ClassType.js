@@ -1,8 +1,9 @@
-const { Schema, model } = require("mongoose")
+const { Schema, model, ObjectId } = require("mongoose")
 
 
 const ClassType = new Schema({
-    type: {type: String, required: true},
+    class_type: {type: String, required: true},
+    transfer_type: {type: ObjectId, required: true},
 })
 
 
