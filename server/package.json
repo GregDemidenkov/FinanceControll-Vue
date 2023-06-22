@@ -4,7 +4,8 @@
   "description": "server for FinaceControll",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "podlunoy",
   "license": "ISC",
@@ -12,5 +13,8 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mongoose": "^7.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
