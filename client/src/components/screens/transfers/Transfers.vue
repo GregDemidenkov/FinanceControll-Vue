@@ -1,13 +1,13 @@
 <script>
     import Menu from '../../shared/components/menu/Menu.vue'
-    // import AccountCart from '../../shared/components/account-cart/AccountCart.vue'
+    import TransferCart from '../../shared/components/transfer-cart/TransferCart.vue'
     // import AccountForm from '../../shared/components/account-form/AccountForm.vue'
 
     // import { mapActions, mapState } from 'vuex';
 
 
     export default {
-        components: { Menu },
+        components: { Menu, TransferCart },
         // methods: {
         //     ...mapActions({
         //         getAccounts: 'accounts/getAccounts'
@@ -30,14 +30,13 @@
         <Menu :title = "'Transfers'">
             <!-- <AccountForm /> -->
         </Menu>
-        <!-- <div class = "list" v-if = "this.accounts.length > 0">
-            <AccountCart 
-                v-for = "acc in this.accounts"
-                :key = "acc.id"
-                :info = "acc"
+        <div class = "list">
+            <TransferCart 
+                v-for = "i in 7"
+                :num = "i"
             />
         </div>
-        <div v-else class = "message">
+        <!-- <div v-else class = "message">
             No active accounts :(
         </div> -->
     </div>
@@ -46,22 +45,22 @@
 
 <style lang="scss" scoped>
 
-    // .list {
-    //     display: flex;
-    //     flex-direction: column;
-    //     padding-top: 60px;
+    .list {
+        display: flex;
+        flex-direction: column;
+        padding-top: 60px;
 
-    //     div {
-    //         margin-bottom: 20px;
-    //     }
-    // }
+        div {
+            margin-bottom: 20px;
+        }
+    }
 
-    // .message {
-    //     margin-top: 60px;
-    //     text-align: center;
-    //     font-size: 36px;
-    //     font-weight: 700;
-    //     color: $light-green;
-    // }
+    .message {
+        margin-top: 60px;
+        text-align: center;
+        font-size: 36px;
+        font-weight: 700;
+        color: $light-green;
+    }
 
 </style>
