@@ -42,7 +42,7 @@ class AccountDao {
             throw new Error("Account not found")
         }
 
-        await account.deleteOne()
+        await Account.deleteOne({_id: id})
         await Transfer.deleteMany({account_id: id})
 
         return "Account was deleted"

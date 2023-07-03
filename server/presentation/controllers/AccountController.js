@@ -49,7 +49,7 @@ class AccountrController {
     async deleteAccount(req, res) {
         try {
             const { id } = req.query
-            const result = await TransferDao.deleteAccount(id)
+            const result = await AccountDao.deleteAccount(id)
 
             return res.json(result)
         } catch (e) {
