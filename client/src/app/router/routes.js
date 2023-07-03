@@ -1,5 +1,6 @@
 export default {
-    home: "/",
+    main: "/",
+    home: "/home",
     accounts: "/accounts",
     budgets: "/budgets",
     transfers: "/transfers"

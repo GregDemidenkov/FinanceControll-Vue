@@ -24,52 +24,56 @@
 
 
 <template>
-    
-    <nav 
+
+    <div 
         :class = "{
+            'nav-section': true,
             'hide': !this.show
         }"
     >
-        <div class = "menu">
-            <div class = "show" @click = "showHandler">
-                <!-- <img
-                    v-if = "this.show"
-                    src="@/assets/img/close.svg"
-                    alt=""
-                > -->
-                <img
-                    
-                    src="@/assets/img/open.svg"
-                    alt=""
-                >
+        <nav>
+            <div class = "menu">
+                <div class = "show" @click = "showHandler">
+                    <img 
+                        src="@/assets/img/open.svg"
+                        alt=""
+                    >
+                </div>
             </div>
-        </div>
-        <div class = "logo">
-            <p>F</p>
-            <img src="/public/favicon.ico" alt="">
-            <p>C</p>
-        </div>
-        <div class = "nav-content">
-            <NavEl
-                v-for = "el in navEl"
-                :key = "el.img"
-                :data = "el"
-                :hide = "this.show"
-            />
-        </div>
-    </nav>
+            <div class = "logo">
+                <p>F</p>
+                <img src="/public/favicon.ico" alt="">
+                <p>C</p>
+            </div>
+            <div class = "nav-content">
+                <NavEl
+                    v-for = "el in navEl"
+                    :key = "el.img"
+                    :data = "el"
+                    :hide = "this.show"
+                />
+            </div>
+        </nav>
+    </div>
 
 </template>
 
 
 <style lang="scss" scoped>
 
-    nav {
-        height: 100vh;
+    .nav-section {
+        position: relative;
+        min-height: 100vh;
         width: 14%;
         background-color: $dark-gray;
         padding: 12px 0;
         border-right: 1px solid rgb(24, 24, 24);
+        transition: 1s all;
+    }
+
+    nav {
+        position: fixed;
+        width: 14%;
         transition: 1s all;
 
         .menu {
@@ -115,6 +119,10 @@
 
     .hide {
         width: 6%;
+
+        nav {
+            width: 6%;
+        }
 
         .menu {
             .show {

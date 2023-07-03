@@ -1,4 +1,4 @@
-import routes from '@/lib/router/routes.js'
+import routes from '@/app/router/routes.js'
 
 
 export default [
