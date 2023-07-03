@@ -30,12 +30,15 @@
         <Menu :title = "'Accounts'">
             <AccountForm />
         </Menu>
-        <div class = "list">
+        <div class = "list" v-if = "this.accounts.length > 0">
             <AccountCart 
                 v-for = "acc in this.accounts"
                 :key = "acc.id"
                 :info = "acc"
             />
+        </div>
+        <div v-else class = "message">
+            No active accounts :(
         </div>
     </div>
 </template>
@@ -51,6 +54,14 @@
         div {
             margin-bottom: 20px;
         }
+    }
+
+    .message {
+        margin-top: 60px;
+        text-align: center;
+        font-size: 36px;
+        font-weight: 700;
+        color: $light-green;
     }
 
 </style>

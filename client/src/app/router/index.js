@@ -2,18 +2,29 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import config from '@/app/router/routes.js'
 
-import HomePage from '@/pages/HomePage.vue'
+import MainPage from '@/pages/MainPage.vue'
 import AccountsPage from '@/pages/AccountsPage.vue'
+import BudgetsPage from '@/pages/BudgetsPage.vue'
+import TransfersPage from '@/pages/TransfersPage.vue'
+
 
 
 const routes = [
     {
         path: config.main,
-        component: HomePage
+        component: MainPage
     },
     {
         path: config.accounts,
         component: AccountsPage
+    },
+    {
+        path: config.budgets,
+        component: BudgetsPage
+    },
+    {
+        path: config.transfers,
+        component: TransfersPage
     },
 ]
 

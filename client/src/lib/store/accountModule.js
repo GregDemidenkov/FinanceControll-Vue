@@ -18,6 +18,9 @@ export const accountModule = {
         },
         addAccount(state, account) {
             state.accounts.push(account)
+        },
+        filterAccounts(state, id) {
+            state.accounts = state.accounts.filter((acc) => acc._id !== id)
         }
     },
 
@@ -34,6 +37,14 @@ export const accountModule = {
             try {
                 const response = await AccountService.getAccounts()
                 commit('setAccounts', response.data)
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async deleteAccount({state, commit}, id) {
+            try {
+                await AccountService.deleteAccount(id)
+                commit('filterAccounts', id)
             } catch (error) {
                 console.log(error)
             }
