@@ -5,7 +5,12 @@ class ClassTypeDao {
 
 
     async getClassTypes() {
-        const classTypes = await ClassType.find()
+        const classTypes = await ClassType.aggregate([{'$lookup': {
+            'from': 'transfertypes',
+            'localField': 'transfer_type',
+            'foreignField': '_id',
+            'as': 'transfer_type'
+          }}])
 
         if(!classTypes) {
             throw new Error("ClassTypes not found")
