@@ -5,6 +5,7 @@ const TransferController = require("../controllers/TransferController")
 
 const router = new Router()
 
+router.get('/all', TransferController.getTransfers)
 router.get('', TransferController.getTransfersByAccountId)
 
 router.post('/create', TransferController.createTransfer)

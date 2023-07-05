@@ -23,6 +23,16 @@ class TransferDao {
         return transfer
     }
 
+    async getTransfers() {
+        const transfers = await Transfer.find()
+
+        if(!transfers) {
+            throw new Error("Transfers not found")
+        }
+
+        return transfers
+    }
+
     async getTransfersByAccountId(account_id, type_id) {
         let transfers
 

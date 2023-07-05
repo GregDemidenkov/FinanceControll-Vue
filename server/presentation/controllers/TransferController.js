@@ -15,6 +15,21 @@ class TransferController {
         }
     }
 
+    async getTransfers(req, res) {
+        try {
+            const result = await TransferDao.getTransfers()
+
+            return res.json(result)
+        } catch (e) {
+            console.log(e)
+
+            if(e.message == "Transfers not found") {
+                res.status(404).send({message: e.message})
+            }
+            res.status(500).send({message: "Server error"})
+        }
+    }
+
     async getTransfersByAccountId(req, res) {
         try {
             const { account_id, type_id } = req.query
