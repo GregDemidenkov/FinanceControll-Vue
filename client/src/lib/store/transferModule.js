@@ -25,10 +25,10 @@ export const transferModule = {
     },
 
     actions: {
-        async createTransfer({state, commit}, params) {
+        async createTransfer({state, commit, dispatch}, params) {
             try {
-                const response = await TransferService.createTransfer(params)
-                commit('addTransfer', response.data)
+                await TransferService.createTransfer(params)
+                dispatch('getTransfers')
             } catch (error) {
                 console.log(error)
             }
@@ -40,16 +40,7 @@ export const transferModule = {
             } catch (error) {
                 console.log(error)
             }
-        },
-        // async deleteAccount({state, commit}, id) {
-        //     try {
-        //         await AccountService.deleteAccount(id)
-        //         commit('filterAccounts', id)
-        //     } catch (error) {
-        //         console.log(error)
-        //     }
-        // }
-
+        }
     }
 
 }

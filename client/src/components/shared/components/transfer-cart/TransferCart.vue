@@ -1,12 +1,9 @@
 <script>
     export default {
         props: {
-            // info: {
-            //     type: Object,
-            //     required: true
-            // }
-            num: {
-                type: Number
+            info: {
+                type: Object,
+                required: true
             }
         }
     }
@@ -15,12 +12,12 @@
 
 <template>
     <div class = "cart">
-        <img v-if = "this.num % 2 === 0" src="@/assets/img/up.svg" alt="">
+        <img v-if = "this.info.transfer_type === 'income'" src="@/assets/img/up.svg" alt="">
         <img v-else src="@/assets/img/down.svg" alt="">
         <div class="info">
-            <p><strong>Account № </strong>1234 1234 1234 1234</p>
-            <p><strong>Class: </strong>Other</p>
-            <p><strong>Money: </strong>300 ₽</p>
+            <p><strong>Account № </strong>{{ this.info.account }}</p>
+            <p><strong>Class: </strong>{{ this.info.class_type }}</p>
+            <p><strong>Money: </strong>{{ this.info.money }} ₽</p>
         </div>
         <MyButton>Cancel</MyButton>
     </div>

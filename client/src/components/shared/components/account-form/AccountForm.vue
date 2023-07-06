@@ -52,6 +52,7 @@
             font-size: 24px;
             font-weight: 700;
             color: white;
+            text-transform: uppercase;
         }
     }
 

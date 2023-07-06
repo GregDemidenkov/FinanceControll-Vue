@@ -37,7 +37,10 @@
         display: flex;
         align-items: center;
         margin: auto;
-        background-color: $dark-blue;
+        padding: 40px;
+        background-color: $dark-gray;
+        box-shadow: 0px 3px 4px rgba(24, 24, 24, 0.25);
+        border: 3px solid white;
         border-radius: 12px;
         min-height: 400px;
         min-width: 40%;

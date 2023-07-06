@@ -1,26 +1,26 @@
 <script>
     import Menu from '../../shared/components/menu/Menu.vue'
     import TransferCart from '../../shared/components/transfer-cart/TransferCart.vue'
-    // import AccountForm from '../../shared/components/account-form/AccountForm.vue'
+    import TransferForm from '../../shared/components/transfer-form/TransferForm.vue'
 
-    // import { mapActions, mapState } from 'vuex';
+    import { mapActions, mapState } from 'vuex';
 
 
     export default {
-        components: { Menu, TransferCart },
-        // methods: {
-        //     ...mapActions({
-        //         getAccounts: 'accounts/getAccounts'
-        //     })
-        // },
-        // mounted() {
-        //     this.getAccounts()
-        // },
-        // computed: {
-        //     ...mapState({
-        //         accounts: state => state.accounts.accounts
-        //     }),
-        // }
+        components: { Menu, TransferCart, TransferForm },
+        methods: {
+            ...mapActions({
+                getTransfers: 'transfers/getTransfers'
+            })
+        },
+        mounted() {
+            this.getTransfers()
+        },
+        computed: {
+            ...mapState({
+                transfers: state => state.transfers.transfers
+            }),
+        }
     }
 </script>
 
@@ -28,17 +28,23 @@
 <template>
     <div>
         <Menu :title = "'Transfers'">
-            <!-- <AccountForm /> -->
+            <TransferForm />
         </Menu>
-        <div class = "list">
+        <div v-if = "this.transfers.length > 0" class = "list">
             <TransferCart 
-                v-for = "i in 7"
-                :num = "i"
+                v-for = "t in this.transfers"
+                :key = "t.id"
+                :info = "{
+                    account: t.account[0].number,
+                    transfer_type: t.transfer_type[0].type,
+                    class_type: t.class_type[0].class_type,
+                    money: t.money
+                }"
             />
         </div>
-        <!-- <div v-else class = "message">
-            No active accounts :(
-        </div> -->
+        <div v-else class = "message">
+            No active transfers :(
+        </div>
     </div>
 </template>
 

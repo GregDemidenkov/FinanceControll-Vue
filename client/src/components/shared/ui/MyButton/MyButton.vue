@@ -22,6 +22,8 @@
         padding: 8px 16px;
         background-color: $light-green;
         color: white;
+        font-size: 16px;
+        font-weight: 600;
         border: none;
         border-radius: 4px;
         text-align: center;
