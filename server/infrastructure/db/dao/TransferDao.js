@@ -87,17 +87,24 @@ class TransferDao {
     }
 
     async updateTransfer(id, money) {
-        const transfer = await Transfer.find({_id: id})
+        const transfer = await Transfer.findOne({_id: id})
 
         if(!transfer) {
             throw new Error("Transfer not found")
         }
 
+        const tMoney = transfer.money
+
         transfer.money = money
         await transfer.save()
 
-        const account = await Account.find({_id: transfer.account_id})
-        account.money += transfer.money
+        const account = await Account.findOne({_id: transfer.account_id})
+
+        if(tMoney > money) {
+            account.money += money - tMoney
+        } else if(tMoney < money) {
+            account.money += money - tMoney
+        }
 
         await account.save()
 

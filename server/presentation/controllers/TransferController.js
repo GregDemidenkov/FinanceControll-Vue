@@ -64,8 +64,7 @@ class TransferController {
 
     async updateTransfer(req, res) {
         try {
-            const { id } = req.query
-            const { money } = req.body
+            const { id, money } = req.body
             const result = await TransferDao.updateTransfer(id, money)
 
             return res.json(result)
