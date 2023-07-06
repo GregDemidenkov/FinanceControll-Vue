@@ -21,6 +21,10 @@ class TransferService {
             }
         })
     }
+
+    async updateTransfer(params) {
+        return await axios.patch(`${import.meta.env.VITE_PORT}${this.path}/update`, params)
+    }
 }
 
 

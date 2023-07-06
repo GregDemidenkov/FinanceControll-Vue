@@ -25,7 +25,7 @@ export const transferModule = {
     },
 
     actions: {
-        async createTransfer({state, commit, dispatch}, params) {
+        async createTransfer({dispatch}, params) {
             try {
                 await TransferService.createTransfer(params)
                 dispatch('getTransfers')
@@ -33,7 +33,7 @@ export const transferModule = {
                 console.log(error)
             }
         },
-        async getTransfers({state, commit}) {
+        async getTransfers({commit}) {
             try {
                 const response = await TransferService.getTransfers()
                 commit('setTransfers', response.data)
@@ -41,10 +41,18 @@ export const transferModule = {
                 console.log(error)
             }
         },
-        async deleteTransfer({state, commit}, id) {
+        async deleteTransfer({commit}, id) {
             try {
                 await TransferService.deleteTransfer(id)
                 commit('filterTransfers', id)
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async updateTransfer({dispatch}, params) {
+            try {
+                await TransferService.updateTransfer(params)
+                dispatch('getTransfers')
             } catch (error) {
                 console.log(error)
             }
