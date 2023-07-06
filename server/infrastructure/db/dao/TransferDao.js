@@ -15,7 +15,7 @@ class TransferDao {
 
         await transfer.save()
 
-        const account = await Account.find({_id: transfer.account_id})
+        const account = await Account.findOne({_id: transfer.account_id})
         account.money += transfer.money
 
         await account.save()
@@ -24,7 +24,27 @@ class TransferDao {
     }
 
     async getTransfers() {
-        const transfers = await Transfer.find()
+        const transfers = await Transfer.aggregate(
+            [
+                {'$lookup': {
+                'from': 'accounts',
+                'localField': 'account_id',
+                'foreignField': '_id',
+                'as': 'account'
+                }},
+                {'$lookup': {
+                'from': 'transfertypes',
+                'localField': 'type_id',
+                'foreignField': '_id',
+                'as': 'transfer_type'
+                }},
+                {'$lookup': {
+                    'from': 'classtypes',
+                    'localField': 'class_id',
+                    'foreignField': '_id',
+                    'as': 'class_type'
+                }}
+            ])
 
         if(!transfers) {
             throw new Error("Transfers not found")
