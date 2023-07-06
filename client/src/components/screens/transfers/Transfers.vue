@@ -35,6 +35,7 @@
                 v-for = "t in this.transfers"
                 :key = "t.id"
                 :info = "{
+                    id: t._id,
                     account: t.account[0].number,
                     transfer_type: t.transfer_type[0].type,
                     class_type: t.class_type[0].class_type,

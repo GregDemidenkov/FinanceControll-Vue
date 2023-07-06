@@ -36,7 +36,7 @@ class AccountDao {
     }
 
     async deleteAccount(id) {
-        const account = await Account.find({_id: id})
+        const account = await Account.findOne({_id: id})
 
         if(!account) {
             throw new Error("Account not found")

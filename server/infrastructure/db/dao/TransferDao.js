@@ -70,13 +70,14 @@ class TransferDao {
     }
 
     async deleteTransfer(id) {
-        const transfer = await Transfer.find({_id: id})
+        console.log(id)
+        const transfer = await Transfer.findOne({_id: id})
 
         if(!transfer) {
             throw new Error("Transfer not found")
         }
 
-        const account = await Account.find({_id: transfer.account_id})
+        const account = await Account.findOne({_id: transfer.account_id})
         account.money -= transfer.money
 
         await account.save()

@@ -14,13 +14,13 @@ class TransferService {
         return await axios.get(`${import.meta.env.VITE_PORT}${this.path}/all`)
     }
 
-    // async deleteAccount(id) {
-    //     return await axios.delete(`${import.meta.env.VITE_PORT}${this.path}/delete`, {
-    //         params: {
-    //             id: id
-    //         }
-    //     })
-    // }
+    async deleteTransfer(id) {
+        return await axios.delete(`${import.meta.env.VITE_PORT}${this.path}/delete`, {
+            params: {
+                id: id
+            }
+        })
+    }
 }
 
 

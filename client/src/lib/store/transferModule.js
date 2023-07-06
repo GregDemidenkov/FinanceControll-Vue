@@ -40,6 +40,14 @@ export const transferModule = {
             } catch (error) {
                 console.log(error)
             }
+        },
+        async deleteTransfer({state, commit}, id) {
+            try {
+                await TransferService.deleteTransfer(id)
+                commit('filterTransfers', id)
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 
