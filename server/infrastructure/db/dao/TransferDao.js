@@ -77,7 +77,7 @@ class TransferDao {
         }
 
         const account = await Account.find({_id: transfer.account_id})
-        account.money += transfer.money
+        account.money -= transfer.money
 
         await account.save()
         await transfer.deleteOne()
