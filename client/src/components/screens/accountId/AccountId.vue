@@ -1,26 +1,38 @@
 <script>
+    import { mapActions, mapState } from 'vuex'
+
     import Menu from '../../shared/components/menu/Menu.vue'
     import TransferCart from '../../shared/components/transfer-cart/TransferCart.vue'
     import TransferForm from '../../shared/components/transfer-form/TransferForm.vue'
 
-    import { mapActions, mapState } from 'vuex';
-
 
     export default {
         components: { Menu, TransferCart, TransferForm },
+        data() {
+            return {
+                account: {
+                    type: Object,
+                    default: {}
+                }
+            }
+        },
         methods: {
             ...mapActions({
-                getTransfers: 'transfers/getTransfers'
+                getTransfersByAccountId: 'transfers/getTransfersByAccountId'
             })
         },
         mounted() {
-            console.log(1)
-            this.getTransfers()
+            this.getTransfersByAccountId(this.$route.params.id)
         },
         computed: {
             ...mapState({
                 transfers: state => state.transfers.transfers
             }),
+        },
+        watch: {
+            transfers() {
+                console.log(this.transfers[0].account[0].number)
+            }
         }
     }
 </script>
@@ -28,7 +40,7 @@
 
 <template>
     <div>
-        <Menu :title = "'Transfers'">
+        <Menu v-if = "this.transfers.length > 0" :title = "`Account № ${this.transfers[0].account[0].number}`">
             <TransferForm />
         </Menu>
         <div v-if = "this.transfers.length > 0" class = "list">

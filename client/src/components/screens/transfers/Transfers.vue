@@ -33,7 +33,7 @@
         <div v-if = "this.transfers.length > 0" class = "list">
             <TransferCart 
                 v-for = "t in this.transfers"
-                :key = "t.id"
+                :key = "t._id"
                 :info = "{
                     id: t._id,
                     account: t.account[0].number,

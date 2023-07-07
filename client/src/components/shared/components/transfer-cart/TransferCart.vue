@@ -49,7 +49,6 @@
             >
                 <p><strong>Account № </strong>{{ info.account }}</p>
             </router-link>
-            <p v-else><strong>Account № </strong>{{ info.account }}</p>
             <p><strong>Class: </strong>{{ info.class_type }}</p>
             <p v-if = "updateVisible"><strong>Money: </strong>{{ info.money }} ₽</p>
             <div v-else class = "update-money-input">

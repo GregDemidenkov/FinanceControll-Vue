@@ -19,8 +19,12 @@ const routes = [
         path: config.accounts,
         component: AccountsPage
     },
+    // {
+    //     path: config.accountIdPage,
+    //     component: AccountIdPage
+    // },
     {
-        path: config.AccountIdPage,
+        path: '/accounts/:id',
         component: AccountIdPage
     },
     {
