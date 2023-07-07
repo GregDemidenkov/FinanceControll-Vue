@@ -7,6 +7,9 @@
             info: {
                 type: Object,
                 required: true
+            },
+            accountLinkStatus: {
+                type: Boolean
             }
         },
         methods: {
@@ -22,7 +25,14 @@
     <div class = "cart">
         <img src="@/assets/img/accounts.svg" alt="">
         <div class="info">
-            <p><strong>№ </strong>{{ info.number }}</p>
+            <router-link 
+                v-if = "accountLinkStatus" 
+                class = "account-link" 
+                :to = "`/accounts/${info._id}`"
+            >
+                <p><strong>№ </strong>{{ info.number }}</p>
+            </router-link>
+            <p v-else><strong>№ </strong>{{ info.number }}</p>
             <p><strong>Money: </strong>{{ info.money }} ₽</p>
             <p><strong>Created at </strong>{{ info.created_at.slice(0, 10) }}</p>
         </div>
@@ -49,6 +59,18 @@
 
         .info {
             flex: 80%;
+
+            .account-link {
+                display: inline-block;
+                width: 230px;
+
+                &:hover {
+                    p {
+                        color: $light-green;
+                    }
+                }
+            }
+
             p {
                 color: white;
                 font-size: 18px;

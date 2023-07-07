@@ -1,9 +1,9 @@
 <script>
+    import { mapActions, mapState } from 'vuex'
+
     import Menu from '../../shared/components/menu/Menu.vue'
     import AccountCart from '../../shared/components/account-cart/AccountCart.vue'
     import AccountForm from '../../shared/components/account-form/AccountForm.vue'
-
-    import { mapActions, mapState } from 'vuex';
 
 
     export default {
@@ -35,6 +35,7 @@
                 v-for = "acc in this.accounts"
                 :key = "acc.id"
                 :info = "acc"
+                :accountLinkStatus = "true"
             />
         </div>
         <div v-else class = "message">

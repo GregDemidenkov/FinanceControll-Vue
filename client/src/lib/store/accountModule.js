@@ -1,4 +1,5 @@
 import AccountService from "../service/AccountService"
+import dinamicAddRoutes from "@/app/router/dinamicAddRoutes"
 
 
 export const accountModule = {
@@ -28,7 +29,9 @@ export const accountModule = {
         async createAccount({state, commit}, params) {
             try {
                 const response = await AccountService.createAccount(params)
+
                 commit('addAccount', response.data)
+                dinamicAddRoutes(state.accounts)
             } catch (error) {
                 console.log(error)
             }
@@ -36,7 +39,9 @@ export const accountModule = {
         async getAccounts({state, commit}) {
             try {
                 const response = await AccountService.getAccounts()
+
                 commit('setAccounts', response.data)
+                dinamicAddRoutes(response.data)
             } catch (error) {
                 console.log(error)
             }

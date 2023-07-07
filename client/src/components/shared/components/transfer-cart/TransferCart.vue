@@ -7,6 +7,9 @@
             info: {
                 type: Object,
                 required: true
+            },
+            accountLinkStatus: {
+                type: Boolean
             }
         },
         data() {
@@ -39,7 +42,14 @@
         <img v-if = "info.transfer_type === 'income'" src="@/assets/img/up.svg" alt="">
         <img v-else src="@/assets/img/down.svg" alt="">
         <div class="info">
-            <p><strong>Account № </strong>{{ info.account }}</p>
+            <router-link 
+                v-if = "accountLinkStatus"
+                class = "account-link" 
+                :to = "`/accounts/${info.id}`"
+            >
+                <p><strong>Account № </strong>{{ info.account }}</p>
+            </router-link>
+            <p v-else><strong>Account № </strong>{{ info.account }}</p>
             <p><strong>Class: </strong>{{ info.class_type }}</p>
             <p v-if = "updateVisible"><strong>Money: </strong>{{ info.money }} ₽</p>
             <div v-else class = "update-money-input">
@@ -101,6 +111,18 @@
 
         .info {
             flex: 80%;
+
+            .account-link {
+                display: inline-block;
+                width: 314px;
+
+                &:hover {
+                    p {
+                        color: $light-green;
+                    }
+                }
+            }
+
             p {
                 color: white;
                 font-size: 18px;

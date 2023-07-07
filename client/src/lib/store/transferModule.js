@@ -1,4 +1,5 @@
 import TransferService from "../service/TransferService"
+import dinamicAddRoutes from "@/app/router/dinamicAddRoutes"
 
 
 export const transferModule = {
@@ -36,7 +37,9 @@ export const transferModule = {
         async getTransfers({commit}) {
             try {
                 const response = await TransferService.getTransfers()
+                
                 commit('setTransfers', response.data)
+                dinamicAddRoutes(response.data)
             } catch (error) {
                 console.log(error)
             }

@@ -14,6 +14,7 @@
             })
         },
         mounted() {
+            console.log(1)
             this.getTransfers()
         },
         computed: {
@@ -41,7 +42,7 @@
                     class_type: t.class_type[0].class_type,
                     money: t.money
                 }"
-                :accountLinkStatus = "true"
+                :accountLinkStatus = "false"
             />
         </div>
         <div v-else class = "message">
