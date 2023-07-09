@@ -1,6 +1,13 @@
 <script>
+    import routes from '@/app/router/routes.js'
+
+
     export default {
-        
+        data() {
+            return {
+                link: routes.accounts
+            }
+        }
     }
 </script>
 
@@ -8,7 +15,7 @@
 <template>
     <div class = "home">
         <h1>Finance Controll <span>Vue</span></h1>
-        <MyButton class = "btn-home">Get started</MyButton>
+        <router-link class = "btn-home" :to = "link">Get started</router-link>
     </div>
 </template>
 
@@ -35,9 +42,16 @@
     }
 
     .btn-home {
+        margin-top: 40px;
+        padding: 8px 16px;
+        background-color: $light-green;
+        color: white;
         font-size: 26px;
         font-weight: 600;
-        margin-top: 20px;
+        border: none;
+        border-radius: 4px;
+        text-align: center;
+        cursor: pointer;
     }
 
 </style>
