@@ -75,6 +75,7 @@
         align-items: center;
         justify-content: space-between;
         width: 100%;
+        margin-bottom: 20px;
         padding: 16px 40px;
         border: 2px solid $dark-blue;
         border-radius: 8px;
