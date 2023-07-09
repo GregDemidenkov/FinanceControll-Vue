@@ -3,6 +3,15 @@
 
 
     export default {
+        props: {
+            type: {
+                type: String,
+                default: "all"
+            },
+            account: {
+                type: Object
+            }
+        },
         data() {
             return {
                 form: {
@@ -24,12 +33,14 @@
                 createTransfer: 'transfers/createTransfer'
             }),
             createTransferHandler() {
-                this.createTransfer({
-                    account_id: this.form.cartNum,
+                this.createTransfer([{
+                    account_id: this.form.cartNum || this.account.id,
                     type_id: this.form.transfer_type.value,
                     class_id: this.form.class_type,
-                    money: this.form.transfer_type.name == "consumption" ? -Number(this.form.money) : Number(this.form.money)
-                })
+                    money: this.form.transfer_type.name == "consumption" 
+                        ? -Number(this.form.money) 
+                        : Number(this.form.money)
+                }, this.type])
 
                 this.form = {
                     cartNum: "",
@@ -40,7 +51,9 @@
             }
         },
         mounted() {
-            this.getAccounts()
+            if (this.type == "all") {
+                this.getAccounts()
+            }
             this.getTransferTypes()
             this.getClassTypes()
         },
@@ -49,7 +62,6 @@
                 accounts: state => state.accounts.accounts,
                 transferTypes: state => state.transferTypes.transferTypes,
                 classTypes: state => state.classTypes.classTypes,
-                transfers: state => state.transfers.transfers
             }),
         },
         watch: {
@@ -81,11 +93,13 @@
     <div class = "transfer-form">
         <h3>Add new Transfer</h3>
         <MyForm>
-            <MySelect 
+            <MySelect
+                v-if = "type == 'all'"
                 v-model="form.cartNum"
                 :options="accountsList"
                 :disabledOptionName = "'Choose a card'"
             />
+            <h2 v-else ><strong>Account № </strong>{{ account.number }}</h2>
             <div class = "transfer-types">
                 <MyInput
                     v-for = "tT in transferTypesList"
@@ -132,6 +146,17 @@
             font-weight: 700;
             color: white;
             text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: white;
+            margin-bottom: 40px;
+
+            strong {
+                color: $light-green;
+                font-weight: 700;
+            }
         }
 
         select {

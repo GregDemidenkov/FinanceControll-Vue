@@ -16,9 +16,6 @@ export const transferModule = {
         setTransfers(state, transfers) {
             state.transfers = transfers
         },
-        addTransfer(state, transfer) {
-            state.transfers.push(transfer)
-        },
         filterTransfers(state, id) {
             state.transfers = state.transfers.filter((acc) => acc._id !== id)
         }
@@ -27,8 +24,17 @@ export const transferModule = {
     actions: {
         async createTransfer({dispatch}, params) {
             try {
-                await TransferService.createTransfer(params)
-                dispatch('getTransfers')
+                const type = params[1]
+                const p = params[0]
+
+                await TransferService.createTransfer(p)
+                if (type == "all") {
+                    dispatch('getTransfers')
+                } else {
+                    dispatch('getTransfersByAccountId', {
+                        account_id: p.account_id,
+                    })
+                }
             } catch (error) {
                 console.log(error)
             }
@@ -43,9 +49,9 @@ export const transferModule = {
             }
         },
 
-        async getTransfersByAccountId({commit}, account_id, type_id) {
+        async getTransfersByAccountId({commit}, params) {
             try {
-                const response = await TransferService.getTransfersByAccountId(account_id, type_id)
+                const response = await TransferService.getTransfersByAccountId(params.account_id, params.type_id)
                 
                 commit('setTransfers', response.data)
             } catch (error) {
@@ -63,8 +69,19 @@ export const transferModule = {
         },
         async updateTransfer({dispatch}, params) {
             try {
-                await TransferService.updateTransfer(params)
-                dispatch('getTransfers')
+                const p = params[0]
+                const type = params[1]
+                const account_id = params[2]
+
+                await TransferService.updateTransfer(p)
+
+                if (type == "all") {
+                    dispatch('getTransfers')
+                } else {
+                    dispatch('getTransfersByAccountId', {
+                        account_id: account_id,
+                    })
+                }
             } catch (error) {
                 console.log(error)
             }

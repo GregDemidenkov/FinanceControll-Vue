@@ -36,7 +36,7 @@
                 :key = "t._id"
                 :info = "{
                     id: t._id,
-                    account: t.account[0].number,
+                    account: {id: t.account[0]._id, number: t.account[0].number},
                     transfer_type: t.transfer_type[0].type,
                     class_type: t.class_type[0].class_type,
                     money: t.money

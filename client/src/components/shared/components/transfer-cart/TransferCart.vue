@@ -10,6 +10,10 @@
             },
             accountLinkStatus: {
                 type: Boolean
+            },
+            type: {
+                type: String,
+                default: "all"
             }
         },
         data() {
@@ -29,7 +33,11 @@
                 this.updateVisible = !this.updateVisible
             },
             updateTransferHadler() {
-                this.updateTransfer({id: this.info.id, money: this.info.money})
+                this.updateTransfer([
+                    {id: this.info.id, money: this.info.money},
+                    this.type,
+                    this.info.account.id
+                ])
                 this.setUpdateVisible()
             }
         }
@@ -45,9 +53,9 @@
             <router-link 
                 v-if = "accountLinkStatus"
                 class = "account-link" 
-                :to = "`/accounts/${info.id}`"
+                :to = "`/accounts/${info.account.id}`"
             >
-                <p><strong>Account № </strong>{{ info.account }}</p>
+                <p><strong>Account № </strong>{{ info.account.number }}</p>
             </router-link>
             <p><strong>Class: </strong>{{ info.class_type }}</p>
             <p v-if = "updateVisible"><strong>Money: </strong>{{ info.money }} ₽</p>

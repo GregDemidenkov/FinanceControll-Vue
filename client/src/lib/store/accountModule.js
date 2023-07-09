@@ -5,7 +5,8 @@ export const accountModule = {
     namespaced: true,
 
     state: () => ({
-        accounts: []
+        accounts: [],
+        accountPageInfo: {}
     }),
 
     getters: {
@@ -21,7 +22,10 @@ export const accountModule = {
         },
         filterAccounts(state, id) {
             state.accounts = state.accounts.filter((acc) => acc._id !== id)
-        }
+        },
+        setAccount(state, account) {
+            state.accountPageInfo = account
+        },
     },
 
     actions: {
@@ -39,6 +43,15 @@ export const accountModule = {
                 const response = await AccountService.getAccounts()
 
                 commit('setAccounts', response.data)
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async getAccountById({state, commit}, id) {
+            try {
+                const response = await AccountService.getAccountById(id)
+
+                commit('setAccount', response.data)
             } catch (error) {
                 console.log(error)
             }

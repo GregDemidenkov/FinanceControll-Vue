@@ -14,6 +14,14 @@ class AccountService {
         return await axios.get(`${import.meta.env.VITE_PORT}${this.path}/all`)
     }
 
+    async getAccountById(id) {
+        return await axios.get(`${import.meta.env.VITE_PORT}${this.path}`, {
+            params: {
+                id: id
+            }
+        })
+    }
+
     async deleteAccount(id) {
         return await axios.delete(`${import.meta.env.VITE_PORT}${this.path}/delete`, {
             params: {
