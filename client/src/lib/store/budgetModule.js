@@ -25,11 +25,11 @@ export const budgetModule = {
     },
 
     actions: {
-        async createBudget({commit}, params) {
+        async createBudget({dispatch}, params) {
             try {
-                const response = await BudgetService.createBudget(params)
+                await BudgetService.createBudget(params)
 
-                commit('addBudget', response.data)
+                dispatch('getBudgets')
             } catch (error) {
                 console.log(error)
             }
@@ -53,10 +53,7 @@ export const budgetModule = {
         },
         async updateBudget({dispatch}, params) {
             try {
-                const p = params[0]
-                const id = params[1]
-
-                await TransferService.updateTransfer(id, p)
+                await BudgetService.updateBudget(params)
 
                 dispatch('getBudgets')
             } catch (error) {

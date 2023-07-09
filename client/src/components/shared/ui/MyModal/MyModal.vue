@@ -31,6 +31,7 @@
         position: fixed;
         display: flex;
         background: rgba(0, 0, 0, 0.568);
+        z-index: 100;
     }
 
     .modal__content {
@@ -44,6 +45,7 @@
         border-radius: 12px;
         min-height: 400px;
         min-width: 40%;
+        z-index: 90;
     }
 
 </style>

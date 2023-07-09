@@ -11,16 +11,19 @@
         methods: {
             ...mapActions({
                 getTransfersByAccountId: 'transfers/getTransfersByAccountId',
-                getAccountById: 'accounts/getAccountById'
+                getAccountById: 'accounts/getAccountById',
+                getMoneyFromAllAccounts: 'accounts/getMoneyFromAllAccounts'
             })
         },
         mounted() {
             this.getTransfersByAccountId({account_id: this.$route.params.id})
+            this.getMoneyFromAllAccounts(this.$route.params.id)
         },
         computed: {
             ...mapState({
                 transfers: state => state.transfers.transfers,
                 accountPageInfo: state => state.accounts.accountPageInfo,
+                budgetMoney: state => state.accounts.budgetMoney,
             })
         },
         watch: {
@@ -42,6 +45,7 @@
         </Menu>
         <div v-if = "accountPageInfo" class = "account-info">
             <p><strong>Money: </strong>{{accountPageInfo.money}} ₽</p>
+            <p><strong>Budget Money: </strong>{{ budgetMoney }} ₽</p>
             <p><strong>Created at: </strong>{{accountPageInfo.created_at?.slice(0, 10)}}</p>
         </div>
         <div v-if = "this.transfers.length > 0" class = "list">

@@ -1,4 +1,5 @@
 import AccountService from "../service/AccountService"
+import BudgetService from "../service/BudgetService"
 
 
 export const accountModule = {
@@ -6,7 +7,8 @@ export const accountModule = {
 
     state: () => ({
         accounts: [],
-        accountPageInfo: {}
+        accountPageInfo: {},
+        budgetMoney: 0
     }),
 
     getters: {
@@ -26,19 +28,22 @@ export const accountModule = {
         setAccount(state, account) {
             state.accountPageInfo = account
         },
+        addBudgetMoney(state, money) {
+            state.budgetMoney = money
+        }
     },
 
     actions: {
-        async createAccount({state, commit}, params) {
+        async createAccount({dispatch}, params) {
             try {
-                const response = await AccountService.createAccount(params)
+                await AccountService.createAccount(params)
 
-                commit('addAccount', response.data)
+                dispatch('getAccounts')
             } catch (error) {
                 console.log(error)
             }
         },
-        async getAccounts({state, commit}) {
+        async getAccounts({commit}) {
             try {
                 const response = await AccountService.getAccounts()
 
@@ -47,7 +52,16 @@ export const accountModule = {
                 console.log(error)
             }
         },
-        async getAccountById({state, commit}, id) {
+        async getMoneyFromAllAccounts({commit}, account_id) {
+            try {
+                const response = await BudgetService.getMoneyFromAllAccounts(account_id)
+
+                commit('addBudgetMoney', response.data)
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async getAccountById({commit}, id) {
             try {
                 const response = await AccountService.getAccountById(id)
 
@@ -56,7 +70,7 @@ export const accountModule = {
                 console.log(error)
             }
         },
-        async deleteAccount({state, commit}, id) {
+        async deleteAccount({commit}, id) {
             try {
                 await AccountService.deleteAccount(id)
                 commit('filterAccounts', id)

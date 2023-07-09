@@ -1,13 +1,13 @@
 <script>
     import Menu from '../../shared/components/menu/Menu.vue'
-    // import AccountCart from '../../shared/components/account-cart/AccountCart.vue'
+    import BudgetCart from '../../shared/components/budget-cart/BudgetCart.vue'
     import BudgetForm from '../../shared/components/budget-form/BudgetForm.vue'
 
     import { mapActions, mapState } from 'vuex';
 
 
     export default {
-        components: { Menu, BudgetForm },
+        components: { Menu, BudgetForm, BudgetCart },
         methods: {
             ...mapActions({
                 getBudgets: 'budgets/getBudgets'
@@ -30,16 +30,24 @@
         <Menu :title = "'Budgets'">
             <BudgetForm />
         </Menu>
-        <!-- <div class = "list" v-if = "this.accounts.length > 0">
-            <AccountCart 
-                v-for = "acc in this.accounts"
-                :key = "acc.id"
-                :info = "acc"
+        <div class = "list" v-if = "this.budgets.length > 0">
+            <BudgetCart
+                v-for = "bud in this.budgets"
+                :key = "bud._id"
+                :info = "{
+                    id: bud._id,
+                    from_date: bud.from_date,
+                    to_date: bud.to_date,
+                    status: bud.status,
+                    curr_money: bud.curr_money,
+                    budget_money: bud.budget_money,
+                    account: {id: bud.account_id, number: bud.account[0].number}
+                }"
             />
         </div>
         <div v-else class = "message">
-            No active accounts :(
-        </div> -->
+            No active budgets :(
+        </div>
     </div>
 </template>
 
