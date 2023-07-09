@@ -10,24 +10,29 @@
                 type: String
             },
             value: {
-                type: Object
+                type: [Object, Boolean]
             },
             placeholder: {
                 type: String,
                 default: ""
             },
             modelValue: {
-                type: [String, Number, Object]
+                type: [String, Number, Object, Boolean]
             },
             label: {
                 type: String
+            },
+            disabled: {
+                type: Boolean,
+                default: false
             }
         },
         methods: {
             updateInput(event) {
                 if (this.type == "radio") {
                     this.$emit('update:modelValue', this.value)
-                    console.log(this.value)
+                } else if (this.type == "checkbox") {
+                    this.$emit('update:modelValue', !this.value)
                 } else {
                     this.$emit('update:modelValue', event.target.value)
                 }
@@ -46,6 +51,7 @@
             :placeholder = "placeholder"
             :value = "modelValue"
             @input = "updateInput"
+            :disabled = "disabled"
         >
     </div>
     <input
@@ -55,6 +61,7 @@
         :placeholder = "placeholder"
         :value = "modelValue"
         @input = "updateInput"
+        :disabled = "disabled"
     >
 </template>
 
@@ -65,11 +72,13 @@
         width: auto;
         display: flex;
         justify-content: center;
+        align-items: center;
     }
 
     label {
         color: white;
         margin-right: 10px;
+        font-weight: 600;
     }
 
     input {
@@ -85,6 +94,16 @@
 
         &:focus {
             border: 1px solid $light-green;
+        }
+
+        &[type='date'] {
+            background-color: white;
+            border: 2px solid white;
+            color: black;
+
+            &:focus {
+            border: 2px solid $light-green;
+            }
         }
     }
 
