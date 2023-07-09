@@ -10,7 +10,7 @@ class ClassTypeDao {
             'localField': 'transfer_type',
             'foreignField': '_id',
             'as': 'transfer_type'
-          }}])
+        }}])
 
         if(!classTypes) {
             throw new Error("ClassTypes not found")

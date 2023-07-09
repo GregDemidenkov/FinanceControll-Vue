@@ -7,6 +7,7 @@ const router = new Router()
 
 
 router.get('/all', BudgetController.getBudgets)
+router.get('', BudgetController.getMoneyFromAllAccounts)
 
 router.post('/create', BudgetController.createBudget)
 
