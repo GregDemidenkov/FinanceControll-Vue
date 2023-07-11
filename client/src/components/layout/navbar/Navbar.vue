@@ -1,6 +1,5 @@
 <script>
-
-    import NavEl from './nav-el/NavEl.vue';
+    import NavEl from './nav-el/NavEl.vue'
     import config from './config'
 
 
@@ -15,7 +14,6 @@
         methods: {
             showHandler() {
                 this.show = !this.show
-                console.log(this.show)
             }
         }
     }
@@ -30,12 +28,17 @@
             'nav-section': true,
             'hide': !this.show
         }"
+        data-testid = "navbar"
     >
         <nav>
             <div class = "menu">
-                <div class = "show" @click = "showHandler">
+                <div 
+                    class = "show" 
+                    @click = "showHandler"
+                    data-testid = "show-nav-button"
+                >
                     <img 
-                        src="@/assets/img/open.svg"
+                        src="/src/assets/img/open.svg"
                         alt=""
                     >
                 </div>

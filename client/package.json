@@ -7,7 +7,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest",
-    "test": "jest --watch --coverage",
+    "test": "jest --watchAll --coverage",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
   },

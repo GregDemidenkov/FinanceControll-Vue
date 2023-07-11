@@ -22,6 +22,7 @@
         :class = "{
             'hideEl': !this.hide
         }"
+        data-testid = "nav-link"
     >
         <img :src="this.data.img" alt="">
         <p>{{this.data.label}}</p>
