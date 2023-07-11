@@ -7,7 +7,6 @@
             return {
                 form: {
                     from_date: "",
-                    // to: "",
                     budget_money: "",
                     account_id: ""
                 },

@@ -14,16 +14,20 @@
             }
         },
         methods: {
-        changeOption(event) {
-            this.$emit('update:modelValue', event.target.value);
-        }
+            changeOption(event) {
+                this.$emit('update:modelValue', event.target.value);
+            }
         }
     }
 </script>
 
 
 <template>
-    <select :value="modelValue" @change="changeOption">
+    <select 
+        :value="modelValue"
+        @change="changeOption"
+        data-testid = "select"
+    >
       <option disabled value = "">{{ disabledOptionName }}</option>
       <option
         v-for="option in options"

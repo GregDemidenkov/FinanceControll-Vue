@@ -44,8 +44,9 @@
 
 <template>
     <div v-if = "label" class = "input">
-        <label>{{ label }}</label>
-        <input 
+        <label :for = "name">{{ label }}</label>
+        <input
+            :id = "name" 
             :type = "type"
             :name = "name"
             :placeholder = "placeholder"
@@ -62,6 +63,7 @@
         :value = "modelValue"
         @input = "updateInput"
         :disabled = "disabled"
+        data-testid = "input"
     >
 </template>
 
@@ -102,7 +104,7 @@
             color: black;
 
             &:focus {
-            border: 2px solid $light-green;
+                border: 2px solid $light-green;
             }
         }
     }

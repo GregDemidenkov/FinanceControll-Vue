@@ -1,5 +1,5 @@
 <script>
-    import toggleMixin from '@/lib/mixins/toggleMixin';
+    import toggleMixin from '@/lib/mixins/toggleMixin'
 
 
     export default {
@@ -12,7 +12,12 @@
 
 <template>
 
-    <div class = "modal" v-if = "show" @click = "hideModal">
+    <div 
+        v-if = "show" 
+        class = "modal" 
+        @click = "hideModal"
+        data-testid = "modal"
+    >
         <div class = "modal__content" @click.stop>
             <slot ></slot>
         </div>
