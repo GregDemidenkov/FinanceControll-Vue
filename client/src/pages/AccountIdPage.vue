@@ -1,5 +1,5 @@
 <script>
-    import AccountId from '../components/screens/accountId/AccountId.vue'
+    import AccountId from '@/components/screens/accountId/AccountId.vue'
 
 
     export default {

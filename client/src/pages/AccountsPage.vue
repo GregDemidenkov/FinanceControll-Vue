@@ -1,5 +1,5 @@
 <script>
-    import Accounts from '../components/screens/accounts/Accounts.vue'
+    import Accounts from '@/components/screens/accounts/Accounts.vue'
 
 
     export default {

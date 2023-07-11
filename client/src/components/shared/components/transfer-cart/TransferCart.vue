@@ -18,10 +18,7 @@
         },
         data() {
             return {
-                updateVisible: {
-                    type: Boolean,
-                    default: false
-                }
+                updateVisible: false
             }
         },
         methods: {
@@ -47,8 +44,8 @@
 
 <template>
     <div class = "cart">
-        <img v-if = "info.transfer_type === 'income'" src="@/assets/img/up.svg" alt="">
-        <img v-else src="@/assets/img/down.svg" alt="">
+        <img v-if = "info.transfer_type === 'income'" src="/src/assets/img/up.svg" alt="">
+        <img v-else src="/src/assets/img/down.svg" alt="">
         <div class="info">
             <router-link 
                 v-if = "accountLinkStatus"
@@ -58,7 +55,7 @@
                 <p><strong>Account № </strong>{{ info.account.number }}</p>
             </router-link>
             <p><strong>Class: </strong>{{ info.class_type }}</p>
-            <p v-if = "updateVisible"><strong>Money: </strong>{{ info.money }} ₽</p>
+            <p v-if = "!updateVisible"><strong>Money: </strong>{{ info.money }} ₽</p>
             <div v-else class = "update-money-input">
                 <label>Money:</label>
                 <MyInput 
@@ -66,19 +63,22 @@
                     :type = "'text'"
                     :placeholder = "info.money"
                     v-model = "info.money"
+                    data-testid = "update-input"
                 />
                 <p>₽</p>
             </div>
         </div>
-        <div v-if = "updateVisible" class = "btns">
+        <div v-if = "!updateVisible" class = "btns">
             <MyButton 
                 class = "blue-btn"
                 @click = "setUpdateVisible"
+                data-testid = "update-btn"
             >
                 Update
             </MyButton>
             <MyButton
                 @click = "deleteTransfer(info.id)"
+                data-testid = "cancel-transfer-btn"
             >
                 Cancel
             </MyButton>
@@ -92,6 +92,7 @@
             <MyButton
                 class = "blue-btn"
                 @click = "setUpdateVisible"
+                data-testid = "cancel-update-btn"
             >
                 Cancel
             </MyButton>

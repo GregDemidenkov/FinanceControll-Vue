@@ -1,10 +1,5 @@
-<template>
-    <Home />
-</template>
-
-
 <script>
-    import Home from '@/components/screens/home/Home.vue';
+    import Home from '@/components/screens/home/Home.vue'
 
 
     export default {
@@ -12,3 +7,8 @@
     }
 
 </script>
+
+
+<template>
+    <Home />
+</template>

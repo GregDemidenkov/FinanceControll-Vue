@@ -1,5 +1,5 @@
 <script>
-    import Transfers from '../components/screens/transfers/Transfers.vue'
+    import Transfers from '@/components/screens/transfers/Transfers.vue'
 
 
     export default {

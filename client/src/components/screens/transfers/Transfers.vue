@@ -3,7 +3,7 @@
     import TransferCart from '../../shared/components/transfer-cart/TransferCart.vue'
     import TransferForm from '../../shared/components/transfer-form/TransferForm.vue'
 
-    import { mapActions, mapState } from 'vuex';
+    import { mapActions, mapState } from 'vuex'
 
 
     export default {

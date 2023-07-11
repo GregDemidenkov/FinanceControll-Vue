@@ -26,6 +26,7 @@
         <MyButton 
             class = "menu-btn"
             @click = "showModal"
+            data-testid = "menu-btn"
         >
             Add
         </MyButton>
