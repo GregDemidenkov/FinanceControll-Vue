@@ -23,12 +23,13 @@
 
 <template>
     <div class = "cart">
-        <img src="@/assets/img/accounts.svg" alt="">
+        <img src="/src/assets/img/accounts.svg" alt="">
         <div class="info">
             <router-link 
                 v-if = "accountLinkStatus" 
                 class = "account-link" 
                 :to = "`/accounts/${info._id}`"
+                data-testid = "account-link"
             >
                 <p><strong>№ </strong>{{ info.number }}</p>
             </router-link>

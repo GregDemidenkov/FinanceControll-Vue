@@ -31,7 +31,7 @@
 
 <template>
     <div class = "cart">
-        <img src="@/assets/img/budgets.svg" alt="">
+        <img src="/src/assets/img/budgets.svg" alt="">
         <div class="info">
             <div class = "date">
                 <p><strong>From: </strong>{{ info.from_date?.slice(0, 10) }}</p>
@@ -43,7 +43,11 @@
                 <div class = "full-budget">
                     <p>0 ₽</p>
                     <div class = "full-progress">
-                        <div :style = "{width: `${info.curr_money / info.budget_money * 100}%`}" class = "curr-progress"></div>
+                        <div 
+                            :style = "{width: `${info.curr_money / info.budget_money * 100}%`}"
+                            class = "curr-progress"
+                            data-testid = "curr-progress"
+                        />
                     </div>
                     <p>{{ info.budget_money }} ₽</p>
                 </div>
@@ -51,12 +55,24 @@
             </div>
         </div>
         <div class = "btns">
-            <MyButton class = "blue-btn" @click = "showModal">Top Up</MyButton>
-            <MyButton @click = "deleteBudget(info.id)">Delete</MyButton>
+            <MyButton 
+                class = "blue-btn" 
+                @click = "showModal"
+                data-testid = "topUp-btn"
+            >
+                Top Up
+            </MyButton>
+            <MyButton 
+                @click = "deleteBudget(info.id)"
+                data-testid = "delete-btn"
+            >
+                Delete
+            </MyButton>
         </div>
     </div>
     <MyModal
         v-model:show = "topUpVisible"
+        data-testid = "topUp-modal"
     >
         <TopUpForm 
             :type = "'budget'"
